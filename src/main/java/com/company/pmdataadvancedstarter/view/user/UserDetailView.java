@@ -1,5 +1,6 @@
 package com.company.pmdataadvancedstarter.view.user;
 
+import com.company.pmdataadvancedstarter.entity.ContactInformation;
 import com.company.pmdataadvancedstarter.entity.User;
 import com.company.pmdataadvancedstarter.view.main.MainView;
 import com.vaadin.flow.component.combobox.ComboBox;
@@ -10,6 +11,7 @@ import io.jmix.core.EntityStates;
 import io.jmix.core.MessageTools;
 import io.jmix.flowui.Notifications;
 import io.jmix.flowui.component.textfield.TypedTextField;
+import io.jmix.flowui.model.InstanceContainer;
 import io.jmix.flowui.view.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -82,5 +84,15 @@ public class UserDetailView extends StandardDetailView<User> {
                     .withPosition(Notification.Position.TOP_END)
                     .show();
         }
+    }
+
+    @Subscribe(id = "userDc", target = Target.DATA_CONTAINER)
+    public void onUserDcItemPropertyChange(final InstanceContainer.ItemPropertyChangeEvent<User> event) {
+        notifications.show("User: " + event.getProperty());
+    }
+
+    @Subscribe(id = "contactInformationDc", target = Target.DATA_CONTAINER)
+    public void onContactInformationDcItemPropertyChange(final InstanceContainer.ItemPropertyChangeEvent<ContactInformation> event) {
+        notifications.show("Contact information: " + event.getProperty());
     }
 }

@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <view xmlns="http://jmix.io/schema/flowui/view"
-      title="msg://taskDetailView.title"
+      title="msg://roadmapDetailView.title"
       focusComponent="form">
     <data>
-        <instance id="taskDc"
-                  class="com.company.pmdataadvancedstarter.entity.Task">
+        <instance id="roadmapDc"
+                  class="com.company.pmdataadvancedstarter.entity.Roadmap">
             <fetchPlan extends="_base">
-                <property name="assignee" fetchPlan="_instance_name"/>
+                <property name="project" fetchPlan="_base"/>
             </fetchPlan>
-            <loader id="taskDl"/>
+            <loader id="roadmapDl"/>
         </instance>
     </data>
     <facets>
@@ -19,21 +19,21 @@
         <action id="closeAction" type="detail_close"/>
     </actions>
     <layout>
-        <formLayout id="form" dataContainer="taskDc">
+        <formLayout id="form" dataContainer="roadmapDc">
             <responsiveSteps>
                 <responsiveStep minWidth="0" columns="1"/>
                 <responsiveStep minWidth="40em" columns="2"/>
             </responsiveSteps>
             <textField id="nameField" property="name"/>
-            <entityPicker id="assigneeField" property="assignee">
+            <datePicker id="startDateField" property="startDate"/>
+            <datePicker id="endDateField" property="endDate"/>
+            <textArea id="goalField" height="9.5em" property="goal"/>
+            <entityPicker id="projectField" property="project">
                 <actions>
                     <action id="entityLookup" type="entity_lookup"/>
                     <action id="entityClear" type="entity_clear"/>
                 </actions>
             </entityPicker>
-            <dateTimePicker id="startDateField" property="startDate"/>
-            <textField id="estimatedEffortsField" property="estimatedEfforts"/>
-            <comboBox id="labelField" property="label"/>
         </formLayout>
         <hbox id="detailActions">
             <button id="saveAndCloseButton" action="saveAction"/>

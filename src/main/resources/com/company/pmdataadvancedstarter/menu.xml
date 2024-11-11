@@ -5,6 +5,9 @@
         <item view="User.list" title="msg://com.company.pmdataadvancedstarter.view.user/UserListView.title"/>
         <item view="Project.list" title="msg://com.company.pmdataadvancedstarter.view.project/projectListView.title"/>
         <item view="Task_.list" title="msg://com.company.pmdataadvancedstarter.view.task/taskListView.title"/>
+        <item view="TimeEntry.list"
+              title="msg://com.company.pmdataadvancedstarter.view.timeentry/timeEntryListView.title"/>
+        <item view="Roadmap.list" title="msg://com.company.pmdataadvancedstarter.view.roadmap/roadmapListView.title"/>
     </menu>
 
 </menu-config>

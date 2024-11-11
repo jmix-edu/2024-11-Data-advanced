@@ -7,8 +7,13 @@
                   class="com.company.pmdataadvancedstarter.entity.Project">
             <fetchPlan extends="_base">
                 <property name="manager" fetchPlan="_instance_name"/>
+                <property name="participants" fetchPlan="_base"/>
+                <property name="tasks" fetchPlan="_base"/>
+                <property name="roadmap" fetchPlan="_base"/>
             </fetchPlan>
             <loader id="projectDl"/>
+            <collection id="participantsDc" property="participants"/>
+            <collection id="tasksDc" property="tasks"/>
         </instance>
     </data>
     <facets>
@@ -33,7 +38,65 @@
                     <action id="entityClear" type="entity_clear"/>
                 </actions>
             </entityPicker>
+            <select id="statusField" property="status"/>
+            <textField id="projectLabelsField" property="projectLabels" readOnly="true"/>
+            <!--            <entityPicker id="roadmapField" property="roadmap">-->
+            <!--                <actions>-->
+            <!--                    <action id="entityLookup" type="entity_lookup"/>-->
+            <!--                    <action id="entityClear" type="entity_clear"/>-->
+            <!--                </actions>-->
+            <!--            </entityPicker>-->
         </formLayout>
+        <details id="roadmapDetails" summaryText="Roadmap details" width="100%">
+            <formLayout id="roadmapForm" dataContainer="projectDc">
+                <textField id="roadmapNameField" property="roadmap.name"/>
+                <datePicker id="roadmapStartDateField" property="roadmap.startDate"/>
+                <datePicker id="roadmapEndDateField" property="roadmap.endDate"/>
+                <textArea id="roadmapGoalField" property="roadmap.goal"/>
+            </formLayout>
+        </details>
+        <h3 text="msg://project.participants.header"/>
+        <hbox id="participantsButtonsPanel" classNames="buttons-panel">
+            <button action="participantsDataGrid.add"/>
+            <button action="participantsDataGrid.exclude"/>
+        </hbox>
+        <dataGrid id="participantsDataGrid" dataContainer="participantsDc" width="100%" minHeight="10em">
+            <actions>
+                <action id="add" type="list_add"/>
+                <action id="exclude" type="list_exclude"/>
+            </actions>
+            <columns>
+                <column property="username"/>
+                <column property="firstName"/>
+                <column property="lastName"/>
+            </columns>
+        </dataGrid>
+        <h3 text="Tasks"/>
+        <hbox id="tasksButtonsPanel" classNames="buttons-panel">
+            <button action="tasksDataGrid.create"/>
+            <button action="tasksDataGrid.edit"/>
+            <button action="tasksDataGrid.remove"/>
+        </hbox>
+        <dataGrid id="tasksDataGrid" dataContainer="tasksDc" width="100%" maxHeight="20em">
+            <actions>
+                <action id="create" type="list_create">
+                    <properties>
+                        <property name="openMode" value="DIALOG"/>
+                    </properties>
+                </action>
+                <action id="edit" type="list_edit">
+                    <properties>
+                        <property name="openMode" value="DIALOG"/>
+                    </properties>
+                </action>
+                <action id="remove" type="list_remove"/>
+            </actions>
+            <columns>
+                <column property="name"/>
+                <column property="startDate"/>
+                <column property="estimatedEfforts"/>
+            </columns>
+        </dataGrid>
         <hbox id="detailActions">
             <button id="saveAndCloseButton" action="saveAction"/>
             <button id="closeButton" action="closeAction"/>
