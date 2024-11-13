@@ -1,15 +1,20 @@
 package com.company.pmdataadvancedstarter.entity;
 
 import com.company.pmdataadvancedstarter.datatype.ProjectLabels;
+import com.company.pmdataadvancedstarter.validation.ProjectLabelsSize;
+import io.jmix.core.DeletePolicy;
+import io.jmix.core.annotation.DeletedBy;
+import io.jmix.core.annotation.DeletedDate;
 import io.jmix.core.entity.annotation.JmixGeneratedValue;
+import io.jmix.core.entity.annotation.OnDeleteInverse;
 import io.jmix.core.metamodel.annotation.Composition;
 import io.jmix.core.metamodel.annotation.InstanceName;
 import io.jmix.core.metamodel.annotation.JmixEntity;
-import io.jmix.core.metamodel.annotation.PropertyDatatype;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.UUID;
 
@@ -26,7 +31,7 @@ public class Project {
 
     @InstanceName
     @Column(name = "NAME", nullable = false)
-    @NotNull
+    @NotNull(message = "{msg://com.company.pmdataadvancedstarter.entity/Project.name.validation.NotNull}")
     private String name;
 
     @Column(name = "START_DATE")
@@ -49,6 +54,7 @@ public class Project {
     @ManyToMany
     private List<User> participants;
 
+    @OnDeleteInverse(DeletePolicy.DENY)
     @Composition
     @OneToMany(mappedBy = "project")
     private List<Task> tasks;
@@ -56,9 +62,45 @@ public class Project {
     @OneToOne(fetch = FetchType.LAZY, mappedBy = "project")
     private Roadmap roadmap;
 
-//    @PropertyDatatype("projectLabels")
+    //    @PropertyDatatype("projectLabels")
+    @ProjectLabelsSize(min = 3, max = 5)
     @Column(name = "PROJECT_LABELS")
     private ProjectLabels projectLabels;
+
+    @DeletedBy
+    @Column(name = "DELETED_BY")
+    private String deletedBy;
+
+    @DeletedDate
+    @Column(name = "DELETED_DATE")
+    private OffsetDateTime deletedDate;
+
+    @Column(name = "TOTAL_ESTIMATED_EFFORTS")
+    private Integer totalEstimatedEfforts;
+
+    public Integer getTotalEstimatedEfforts() {
+        return totalEstimatedEfforts;
+    }
+
+    public void setTotalEstimatedEfforts(Integer totalEstimatedEfforts) {
+        this.totalEstimatedEfforts = totalEstimatedEfforts;
+    }
+
+    public OffsetDateTime getDeletedDate() {
+        return deletedDate;
+    }
+
+    public void setDeletedDate(OffsetDateTime deletedDate) {
+        this.deletedDate = deletedDate;
+    }
+
+    public String getDeletedBy() {
+        return deletedBy;
+    }
+
+    public void setDeletedBy(String deletedBy) {
+        this.deletedBy = deletedBy;
+    }
 
     public ProjectLabels getProjectLabels() {
         return projectLabels;

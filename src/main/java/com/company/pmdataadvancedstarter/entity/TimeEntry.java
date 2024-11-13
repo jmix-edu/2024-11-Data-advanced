@@ -7,6 +7,9 @@ import io.jmix.core.metamodel.annotation.JmixEntity;
 import io.jmix.core.metamodel.datatype.DatatypeFormatter;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.PastOrPresent;
+import jakarta.validation.constraints.Positive;
+import org.hibernate.validator.constraints.Length;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -29,8 +32,10 @@ public class TimeEntry {
 
     @Column(name = "TIME_SPENT", nullable = false)
     @NotNull
+    @Positive(message = "{msg://com.company.pmdataadvancedstarter.entity/TimeEntry.timeSpent.validation.Positive}")
     private Integer timeSpent;
 
+    @PastOrPresent
     @Column(name = "ENTRY_DATE", nullable = false)
     @NotNull
     private LocalDateTime entryDate;
@@ -42,6 +47,7 @@ public class TimeEntry {
 
     @Column(name = "DESCRIPTION")
     @Lob
+    @Length(message = "{msg://com.company.pmdataadvancedstarter.entity/TimeEntry.description.validation.Length}", min = 10)
     private String description;
 
     public String getDescription() {
