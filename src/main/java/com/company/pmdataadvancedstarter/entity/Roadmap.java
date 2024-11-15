@@ -4,7 +4,6 @@ import io.jmix.core.entity.annotation.JmixGeneratedValue;
 import io.jmix.core.metamodel.annotation.InstanceName;
 import io.jmix.core.metamodel.annotation.JmixEntity;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDate;
 import java.util.UUID;
@@ -25,7 +24,6 @@ public class Roadmap {
     private String name;
 
     @Column(name = "START_DATE", nullable = false)
-    @NotNull
     private LocalDate startDate;
 
     @Column(name = "END_DATE")

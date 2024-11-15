@@ -5,6 +5,7 @@ import com.company.pmdataadvancedstarter.datatype.ProjectLabels;
 import com.company.pmdataadvancedstarter.entity.Project;
 import com.company.pmdataadvancedstarter.entity.Roadmap;
 import com.company.pmdataadvancedstarter.view.main.MainView;
+import com.company.pmdataadvancedstarter.view.user.UserListView;
 import com.vaadin.flow.component.ClickEvent;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.router.Route;
@@ -28,6 +29,7 @@ import java.util.Set;
 @ViewDescriptor(path = "project-detail-view.xml")
 @EditedEntityContainer("projectDc")
 public class ProjectDetailView extends StandardDetailView<Project> {
+
     @ViewComponent
     private DataContext dataContext;
     @ViewComponent
@@ -83,5 +85,10 @@ public class ProjectDetailView extends StandardDetailView<Project> {
         notifications.create(sb.toString())
                 .withPosition(Notification.Position.BOTTOM_END)
                 .show();
+    }
+
+    @Install(to = "participantsDataGrid.add", subject = "viewConfigurer")
+    private void participantsDataGridAddViewConfigurer(final UserListView view) {
+        view.setFilterProject(getEditedEntity());
     }
 }

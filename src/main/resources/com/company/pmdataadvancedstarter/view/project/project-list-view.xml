@@ -9,6 +9,7 @@
             <fetchPlan extends="_base">
                 <property name="manager" fetchPlan="_instance_name"/>
                 <property name="roadmap" fetchPlan="_base"/>
+                <property name="owner" fetchPlan="_base"/>
             </fetchPlan>
             <loader id="projectsDl" readOnly="true">
                 <query>
@@ -37,6 +38,7 @@
             <button id="createButton" action="projectsDataGrid.create"/>
             <button id="editButton" action="projectsDataGrid.edit"/>
             <button id="removeButton" action="projectsDataGrid.remove"/>
+            <button id="dmCreate" text="Crate with DataManager"/>
             <simplePagination id="pagination" dataLoader="projectsDl"/>
         </hbox>
         <dataGrid id="projectsDataGrid"
@@ -62,6 +64,7 @@
                     <cancelButton icon="BAN"/>
                 </editorActionsColumn>
                 <column property="totalEstimatedEfforts"/>
+                <column property="owner"/>
             </columns>
         </dataGrid>
         <hbox id="lookupActions" visible="false">

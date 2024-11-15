@@ -1,16 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <view xmlns="http://jmix.io/schema/flowui/view"
       xmlns:c="http://jmix.io/schema/flowui/jpql-condition"
-      title="msg://timeEntryListView.title"
-      focusComponent="timeEntriesDataGrid">
+      title="msg://orderListView.title"
+      focusComponent="ordersDataGrid">
     <data>
-        <collection id="timeEntriesDc"
-                    class="com.company.pmdataadvancedstarter.entity.TimeEntry">
+        <collection id="ordersDc"
+                    class="com.company.pmdataadvancedstarter.entity.Order">
             <fetchPlan extends="_base">
-                <property name="task" fetchPlan="_instance_name"/>
-                <property name="user" fetchPlan="_instance_name"/>
+                <property name="customer" fetchPlan="_base"/>
             </fetchPlan>
-            <loader id="timeEntriesDl" readOnly="true"/>
+            <loader id="ordersDl" readOnly="true">
+                <query>
+                    <![CDATA[select e from Order_ e]]>
+                </query>
+            </loader>
         </collection>
     </data>
     <facets>
@@ -26,19 +29,19 @@
     </actions>
     <layout>
         <genericFilter id="genericFilter"
-                       dataLoader="timeEntriesDl">
+                       dataLoader="ordersDl">
             <properties include=".*"/>
         </genericFilter>
         <hbox id="buttonsPanel" classNames="buttons-panel">
-            <button id="createButton" action="timeEntriesDataGrid.create"/>
-            <button id="editButton" action="timeEntriesDataGrid.edit"/>
-            <button id="removeButton" action="timeEntriesDataGrid.remove"/>
-            <simplePagination id="pagination" dataLoader="timeEntriesDl"/>
+            <button id="createButton" action="ordersDataGrid.create"/>
+            <button id="editButton" action="ordersDataGrid.edit"/>
+            <button id="removeButton" action="ordersDataGrid.remove"/>
+            <simplePagination id="pagination" dataLoader="ordersDl"/>
         </hbox>
-        <dataGrid id="timeEntriesDataGrid"
+        <dataGrid id="ordersDataGrid"
                   width="100%"
                   minHeight="20em"
-                  dataContainer="timeEntriesDc"
+                  dataContainer="ordersDc"
                   columnReorderingAllowed="true">
             <actions>
                 <action id="create" type="list_create"/>
@@ -46,11 +49,9 @@
                 <action id="remove" type="list_remove"/>
             </actions>
             <columns resizable="true">
-                <column property="task"/>
-                <column property="timeSpent"/>
-                <column property="entryDate"/>
-                <column property="user"/>
-                <column property="description"/>
+                <column property="orderNumber"/>
+                <column property="date"/>
+                <column property="customer"/>
             </columns>
         </dataGrid>
         <hbox id="lookupActions" visible="false">
