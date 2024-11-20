@@ -1,7 +1,6 @@
 package com.company.pmdataadvancedstarter.entity;
 
 import com.company.pmdataadvancedstarter.datatype.ProjectLabels;
-import com.company.pmdataadvancedstarter.validation.ProjectLabelsSize;
 import io.jmix.core.DeletePolicy;
 import io.jmix.core.annotation.DeletedBy;
 import io.jmix.core.annotation.DeletedDate;
@@ -9,6 +8,7 @@ import io.jmix.core.entity.annotation.JmixGeneratedValue;
 import io.jmix.core.entity.annotation.OnDeleteInverse;
 import io.jmix.core.entity.annotation.SystemLevel;
 import io.jmix.core.metamodel.annotation.*;
+import io.jmix.pessimisticlock.annotation.PessimisticLock;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 
@@ -22,6 +22,7 @@ import java.util.UUID;
         @Index(name = "IDX_PROJECT_MANAGER", columnList = "MANAGER_ID")
 })
 @Entity
+@PessimisticLock(timeoutSec = 10)
 public class Project {
     @JmixGeneratedValue
     @Column(name = "ID", nullable = false)
@@ -58,11 +59,12 @@ public class Project {
     @OneToMany(mappedBy = "project")
     private List<Task> tasks;
 
-    @OneToOne(fetch = FetchType.LAZY, mappedBy = "project")
+    @JoinColumn(name = "ROADMAP_ID")
+    @OneToOne(fetch = FetchType.LAZY)
     private Roadmap roadmap;
 
     //    @PropertyDatatype("projectLabels")
-    @ProjectLabelsSize(min = 3, max = 5)
+//    @ProjectLabelsSize(min = 3, max = 5)
     @Column(name = "PROJECT_LABELS")
     private ProjectLabels projectLabels;
 

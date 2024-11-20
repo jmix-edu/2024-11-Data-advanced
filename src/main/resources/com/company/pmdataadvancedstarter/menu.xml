@@ -11,6 +11,8 @@
         <item view="ProjectStatsView"
               title="msg://com.company.pmdataadvancedstarter.view.projectstats/projectStatsView.title"/>
         <item view="WorkloadView" title="msg://com.company.pmdataadvancedstarter.view.workload/workloadView.title"/>
+        <item view="Task_repo.list"
+              title="msg://com.company.pmdataadvancedstarter.view.task/taskListViewWithRepo.title"/>
     </menu>
     <menu opened="true" id="customers"
           description="msg://com.company.pmdataadvancedstarter/menu_config.customers.description"
@@ -20,5 +22,7 @@
         <item view="Order_.list" title="msg://com.company.pmdataadvancedstarter.view.order/orderListView.title"/>
         <item view="CustomSearchView"
               title="msg://com.company.pmdataadvancedstarter.view.customsearch/customSearchView.title"/>
+        <item view="CustomerSubstringSearchView"
+              title="msg://com.company.pmdataadvancedstarter.view.customersubstringsearch/customerSubstringSearchView.title"/>
     </menu>
 </menu-config>

@@ -47,7 +47,6 @@ public class ProjectDetailView extends StandardDetailView<Project> {
         event.getEntity().setRoadmap(roadmap);
 
         projectLabelsField.setReadOnly(false);
-
         event.getEntity().setProjectLabels(new ProjectLabels(List.of("bug", "task", "enhancement")));
     }
 

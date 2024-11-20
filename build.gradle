@@ -42,6 +42,14 @@ dependencies {
     }
     testImplementation 'io.jmix.flowui:jmix-flowui-test-assist'
     implementation 'org.hsqldb:hsqldb'
+    implementation 'io.jmix.audit:jmix-audit-starter'
+    implementation 'io.jmix.audit:jmix-audit-flowui-starter'
+    implementation 'org.postgresql:postgresql'
+    implementation 'io.jmix.jmxconsole:jmix-jmxconsole-starter'
+    implementation 'io.jmix.pessimisticlock:jmix-pessimisticlock-flowui-starter'
+    implementation 'io.jmix.pessimisticlock:jmix-pessimisticlock-starter'
+    implementation 'io.jmix.quartz:jmix-quartz-starter'
+    implementation 'io.jmix.quartz:jmix-quartz-flowui-starter'
 }
 
 configurations.implementation {

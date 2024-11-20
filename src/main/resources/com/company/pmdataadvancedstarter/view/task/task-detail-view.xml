@@ -5,8 +5,14 @@
     <data>
         <instance id="taskDc"
                   class="com.company.pmdataadvancedstarter.entity.Task">
-            <fetchPlan extends="_base">
+            <fetchPlan>
                 <property name="assignee" fetchPlan="_instance_name"/>
+                <property name="name"/>
+                <property name="estimatedEfforts"/>
+                <property name="startDate"/>
+                <property name="label"/>
+                <property name="closed"/>
+                <property name="project" fetchPlan="_base"/>
             </fetchPlan>
             <loader id="taskDl"/>
         </instance>
@@ -34,6 +40,13 @@
             <dateTimePicker id="startDateField" property="startDate"/>
             <textField id="estimatedEffortsField" property="estimatedEfforts"/>
             <comboBox id="labelField" property="label"/>
+            <checkbox id="closedField" property="closed"/>
+            <entityPicker id="projectField" property="project">
+                <actions>
+                    <action id="entityLookup" type="entity_lookup"/>
+                    <action id="entityClear" type="entity_clear"/>
+                </actions>
+            </entityPicker>
         </formLayout>
         <hbox id="detailActions">
             <button id="saveAndCloseButton" action="saveAction"/>

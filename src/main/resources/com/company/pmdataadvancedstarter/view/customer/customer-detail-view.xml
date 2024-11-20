@@ -42,7 +42,7 @@
                 <action id="remove" type="list_remove"/>
             </actions>
             <columns>
-                <column property="arderNumber"/>
+                <column property="orderNumber"/>
                 <column property="date"/>
             </columns>
         </dataGrid>

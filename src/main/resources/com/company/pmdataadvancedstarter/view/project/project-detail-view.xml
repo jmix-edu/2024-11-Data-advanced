@@ -62,48 +62,50 @@
                 <textArea id="roadmapGoalField" property="roadmap.goal"/>
             </formLayout>
         </details>
-        <h3 text="msg://project.participants.header"/>
-        <hbox id="participantsButtonsPanel" classNames="buttons-panel">
-            <button action="participantsDataGrid.add"/>
-            <button action="participantsDataGrid.exclude"/>
-        </hbox>
-        <dataGrid id="participantsDataGrid" dataContainer="participantsDc" width="100%" minHeight="10em">
-            <actions>
-                <action id="add" type="list_add"/>
-                <action id="exclude" type="list_exclude"/>
-            </actions>
-            <columns>
-                <column property="username"/>
-                <column property="firstName"/>
-                <column property="lastName"/>
-            </columns>
-        </dataGrid>
-        <h3 text="Tasks"/>
-        <hbox id="tasksButtonsPanel" classNames="buttons-panel">
-            <button action="tasksDataGrid.create"/>
-            <button action="tasksDataGrid.edit"/>
-            <button action="tasksDataGrid.remove"/>
-        </hbox>
-        <dataGrid id="tasksDataGrid" dataContainer="tasksDc" width="100%" maxHeight="20em">
-            <actions>
-                <action id="create" type="list_create">
-                    <properties>
-                        <property name="openMode" value="DIALOG"/>
-                    </properties>
-                </action>
-                <action id="edit" type="list_edit">
-                    <properties>
-                        <property name="openMode" value="DIALOG"/>
-                    </properties>
-                </action>
-                <action id="remove" type="list_remove"/>
-            </actions>
-            <columns>
-                <column property="name"/>
-                <column property="startDate"/>
-                <column property="estimatedEfforts"/>
-            </columns>
-        </dataGrid>
+        <vbox id="wrapper" height="100%" width="100%">
+            <h3 text="msg://project.participants.header"/>
+            <hbox id="participantsButtonsPanel" classNames="buttons-panel">
+                <button action="participantsDataGrid.add"/>
+                <button action="participantsDataGrid.exclude"/>
+            </hbox>
+            <dataGrid id="participantsDataGrid" dataContainer="participantsDc" width="100%" minHeight="10em">
+                <actions>
+                    <action id="add" type="list_add"/>
+                    <action id="exclude" type="list_exclude"/>
+                </actions>
+                <columns>
+                    <column property="username"/>
+                    <column property="firstName"/>
+                    <column property="lastName"/>
+                </columns>
+            </dataGrid>
+            <h3 text="Tasks"/>
+            <hbox id="tasksButtonsPanel" classNames="buttons-panel">
+                <button action="tasksDataGrid.create"/>
+                <button action="tasksDataGrid.edit"/>
+                <button action="tasksDataGrid.remove"/>
+            </hbox>
+            <dataGrid id="tasksDataGrid" dataContainer="tasksDc" width="100%" maxHeight="20em">
+                <actions>
+                    <action id="create" type="list_create">
+                        <properties>
+                            <property name="openMode" value="DIALOG"/>
+                        </properties>
+                    </action>
+                    <action id="edit" type="list_edit">
+                        <properties>
+                            <property name="openMode" value="DIALOG"/>
+                        </properties>
+                    </action>
+                    <action id="remove" type="list_remove"/>
+                </actions>
+                <columns>
+                    <column property="name"/>
+                    <column property="startDate"/>
+                    <column property="estimatedEfforts"/>
+                </columns>
+            </dataGrid>
+        </vbox>
         <hbox id="detailActions">
             <button id="saveAndCloseButton" action="saveAction"/>
             <button id="closeButton" action="closeAction"/>

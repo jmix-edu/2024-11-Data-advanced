@@ -10,7 +10,6 @@
             <loader/>
             <instance id="contactInformationDc" property="contactInformation"/>
         </instance>
-
     </data>
     <actions>
         <action id="saveAction" type="detail_saveClose"/>
@@ -34,7 +33,7 @@
             <textField id="lastNameField" property="lastName"/>
             <comboBox id="timeZoneField" property="timeZoneId" clearButtonVisible="true"/>
             <checkbox id="activeField" property="active"/>
-
+            <textField id="versionField" property="version"/>
         </formLayout>
         <details id="ciDetails" summaryText="Contact information" opened="true" width="100%">
             <formLayout id="ciForm" dataContainer="contactInformationDc">
@@ -44,7 +43,6 @@
                 <textField id="contactInformationUrlField" property="url"/>
             </formLayout>
         </details>
-
         <hbox id="detailActions">
             <button id="saveAndCloseButton" action="saveAction"/>
             <button id="closeButton" action="closeAction"/>

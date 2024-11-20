@@ -43,6 +43,7 @@
                     <actionItem id="showUserSubstitutionsItem" ref="usersDataGrid.showUserSubstitutions"/>
                 </items>
             </dropdownButton>
+            <button id="showUserProjectsBtn" action="usersDataGrid.showUserProjects"/>
             <simplePagination id="pagination" dataLoader="usersDl"/>
         </hbox>
         <dataGrid id="usersDataGrid"
@@ -58,6 +59,7 @@
                 <action id="changePassword" type="sec_changePassword"/>
                 <action id="resetPassword" type="sec_resetPassword"/>
                 <action id="showUserSubstitutions" type="sec_showUserSubstitutions"/>
+                <action id="showUserProjects" text="msg://showUserProjects" type="list_itemTracking"/>
             </actions>
             <columns resizable="true">
                 <column property="username"/>
@@ -65,6 +67,7 @@
                 <column property="lastName"/>
                 <column property="timeZoneId"/>
                 <column property="active"/>
+                <column property="version"/>
             </columns>
         </dataGrid>
         <hbox id="lookupActions" visible="false">

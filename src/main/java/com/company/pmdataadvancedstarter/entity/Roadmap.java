@@ -10,7 +10,7 @@ import java.util.UUID;
 
 @JmixEntity
 @Table(name = "ROADMAP", indexes = {
-        @Index(name = "IDX_ROADMAP_PROJECT", columnList = "PROJECT_ID")
+        @Index(name = "IDX_ROADMAP_PROJECT", columnList = "")
 })
 @Entity
 public class Roadmap {
@@ -33,8 +33,7 @@ public class Roadmap {
     @Lob
     private String goal;
 
-    @JoinColumn(name = "PROJECT_ID")
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY, mappedBy = "roadmap")
     private Project project;
 
     public Project getProject() {

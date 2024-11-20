@@ -6,14 +6,22 @@
     <data>
         <collection id="projectsDc"
                     class="com.company.pmdataadvancedstarter.entity.Project">
-            <fetchPlan extends="_base">
+            <fetchPlan>
                 <property name="manager" fetchPlan="_instance_name"/>
                 <property name="roadmap" fetchPlan="_base"/>
                 <property name="owner" fetchPlan="_base"/>
+                <property name="status"/>
+                <property name="projectLabels"/>
+                <property name="totalEstimatedEfforts"/>
+                <property name="ownerId"/>
+                <property name="name"/>
+                <property name="startDate"/>
+                <property name="endDate"/>
             </fetchPlan>
-            <loader id="projectsDl" readOnly="true">
+            <loader id="projectsDl" readOnly="true" cacheable="true">
                 <query>
-                    <![CDATA[select e from Project e]]>
+<!--                    <![CDATA[select e from Project e where function('actual_efforts', e.id) < e.totalEstimatedEfforts]]>-->
+                    select e from Project e
                 </query>
             </loader>
         </collection>
